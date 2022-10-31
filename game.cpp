@@ -13,10 +13,21 @@ Game::Game() : window(sf::VideoMode(1280, 720), "Orbiters")
 void Game::update()
 {
     sf::Vector2f movement(0.f, 0.f);
-    if (movingUp) movement.y -= 1.f;
-    if (movingDown) movement.y += 1.f;
-    if (movingLeft) movement.x -= 1.f;
-    if (movingRight) movement.x += 1.f;
+    if (movingUp) 
+        player.getPosition().y+1 < 0.f ? 
+            movement.y = 1.f : movement.y -= 0.05f; 
+              
+    if (movingDown) 
+        player.getPosition().y > 689.f ? 
+            movement.y -= 0.05f : movement.y += 0.05f;
+        
+    if (movingLeft)
+        player.getPosition().x+1 < 0.f ? 
+            movement.x = 1.f : movement.x -= 0.05f;
+
+    if (movingRight)
+        player.getPosition().x > 1249.f ? 
+            movement.x -= 0.05f : movement.x += 0.05f;
 
     player.move(movement);
 }
